@@ -1,0 +1,2 @@
+serviceClass: weebloog.client.GreetingService
+path: D723607028AA3D3FED0862232A237662.gwt.rpc

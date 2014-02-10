@@ -1,0 +1,3 @@
+# Module weebloog
+# RPC service class, partial path of RPC policy file
+weebloog.client.GreetingService, D723607028AA3D3FED0862232A237662.gwt.rpc
