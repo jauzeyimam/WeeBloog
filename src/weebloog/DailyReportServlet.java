@@ -50,7 +50,7 @@ public class DailyReportServlet extends HttpServlet {
 					str += post.getTitle() + "\r\n";
 					str += post.getPost() + "\r\n";
 					str += "Posted by " + post.getUser() + " on "
-							+ post.getDate() + "\r\n";
+							+ post.getDateString() + "\r\n";
 					str += "\n";
 				}
 			}
@@ -59,7 +59,7 @@ public class DailyReportServlet extends HttpServlet {
 
 			// Send out Email
 
-			if (!posts.isEmpty()) {
+			if (!posts.isEmpty() && !subs.isEmpty()) {
 				MimeMessage outMessage = new MimeMessage(session);
 				outMessage.setFrom(new InternetAddress(
 						"admin@weebloog.appspotmail.com"));

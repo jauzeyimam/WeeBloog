@@ -3,6 +3,7 @@ package weebloog;
 import static com.googlecode.objectify.ObjectifyService.ofy;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -18,9 +19,23 @@ public class AddSubscriberServlet extends HttpServlet {
 		
 		ObjectifyService.register(Subscriber.class);
 		
-		Subscriber subscriber = new Subscriber(req.getParameter("name"), req.getParameter("email"));
+		List<Subscriber> subs = ObjectifyService.ofy().load()
+				.type(Subscriber.class).list();
+
 		
-        ofy().save().entity(subscriber).now();
+		boolean exists = false;
+		
+		for (Subscriber subscriber: subs) {
+			if (subscriber.getEmail().equals(req.getParameter("email"))) {
+				exists = true;
+			}
+		}
+		
+		if (exists == false) {
+			Subscriber subscriber = new Subscriber(req.getParameter("name"), req.getParameter("email"));
+	        ofy().save().entity(subscriber).now();
+		}
+		
 		
 		resp.sendRedirect("/");
 	}

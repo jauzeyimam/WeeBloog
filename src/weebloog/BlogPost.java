@@ -1,12 +1,14 @@
 package weebloog;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.TimeZone;
 
 import com.google.appengine.api.users.User;
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
 
-@Entity
+@Entity	
 public class BlogPost implements Comparable<BlogPost>{
 	@Id
 	Long id;
@@ -42,6 +44,12 @@ public class BlogPost implements Comparable<BlogPost>{
 	
 	public Date getDate() {
 		return date;
+	}
+	
+	public String getDateString() {
+        SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("dd-MM-yyyy KK:mm:ss a z");
+        DATE_FORMAT.setTimeZone(TimeZone.getTimeZone("America/Chicago"));
+        return DATE_FORMAT.format(date);
 	}
 
 	@Override

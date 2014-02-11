@@ -36,7 +36,7 @@
 				for (BlogPost post : posts) {
 					pageContext.setAttribute("titlePost", post.getTitle());
 					pageContext.setAttribute("contentPost", post.getPost());
-					pageContext.setAttribute("contentDate", post.getDate());
+					pageContext.setAttribute("contentDate", post.getDateString());
 					pageContext.setAttribute("contentUser", post.getUser());
 		%>
 		<h2>${fn:escapeXml(titlePost)}</h2>
