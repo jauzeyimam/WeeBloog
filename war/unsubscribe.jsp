@@ -10,7 +10,7 @@
 <head>
 <link rel="stylesheet" href="style.css" type="text/css" />
 <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
-<title>Subscribe!</title>
+<title>UnSubscribe</title>
 </head>
 <body>
 	<%
@@ -18,24 +18,14 @@
 		User user = userService.getCurrentUser();
 
 		if (user != null) {
-			pageContext.setAttribute("nick", user.getNickname());
 			pageContext.setAttribute("email", user.getEmail());
 		}
 	%>
 
 	<div class="wrapper">
-		<h1>Subscribe to our mailing list!</h1>
+		<h1>We're sorry to see you go!</h1>
 		<br>
-		<form action="/addsubscriber" method="post">
-			<div>
-				<textarea name="name" rows="1" cols="40"><%
-						if (user != null) {
-					%>${fn:escapeXml(nick)}<%
-						} else {
-					%>Name<%
-					}
-					%></textarea>
-			</div>
+		<form action="/removesubscriber" method="post">
 			<div>
 				<textarea name="email" rows="1" cols="40"><%
 						if (user != null) {

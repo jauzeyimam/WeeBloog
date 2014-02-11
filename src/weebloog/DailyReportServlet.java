@@ -54,6 +54,8 @@ public class DailyReportServlet extends HttpServlet {
 					str += "\n";
 				}
 			}
+			
+			str += "Visit us at weebloog.appspot.com for more!";
 
 			// Send out Email
 

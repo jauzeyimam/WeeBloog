@@ -35,6 +35,17 @@
 		<servlet-name>addsubscriber</servlet-name>
 		<url-pattern>/addsubscriber</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>removesubscriber</servlet-name>
+		<servlet-class>weebloog.RemoveSubscriberServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>removesubscriber</servlet-name>
+		<url-pattern>/removesubscriber</url-pattern>
+	</servlet-mapping>
+	
 
 
 	<!-- Default page to serve -->

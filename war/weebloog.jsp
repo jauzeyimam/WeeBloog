@@ -11,21 +11,25 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <link rel="stylesheet" href="style.css" type="text/css" />
 <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
-<title>The Ultimate Weblog</title>
+<title>The Weblog of Jauzey Imam and Zander Smith</title>
 </head>
 <body>
 	<%
 		UserService userService = UserServiceFactory.getUserService();
 		User user = userService.getCurrentUser();
 	%>
-
+	<div class="header">
+	<a href="/"><img src="header.png" /></a>
+	<div class="rightalign"><b>by jauzey imam and zander smith</b></div>
+	</div>
+	
 	<div class="wrapper">
-		<a href="/"><img src="header.png" /></a>
 
 		<h1>Posts</h1>
 		<div class="rightalign">
@@ -59,8 +63,7 @@
 		<h2>${fn:escapeXml(titlePost)}</h2>
 		<p>${fn:escapeXml(contentPost)}</p>
 		<div class="datetime">
-			${fn:escapeXml(contentUser)} <br>
-			${fn:escapeXml(contentDate)}
+			${fn:escapeXml(contentUser)} <br> ${fn:escapeXml(contentDate)}
 		</div>
 		<p>
 
@@ -96,6 +99,10 @@
 		<p>
 			Subscribe <a href="/subscribe.jsp">here!</a>
 		</p>
+		<p>
+			Unsubscribe <a href="/unsubscribe.jsp">here.</a>
+		</p>
+
 
 	</div>
 
