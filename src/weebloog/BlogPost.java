@@ -38,8 +38,8 @@ public class BlogPost implements Comparable<BlogPost>{
 	}
 
 	public String getPost() {
-		//String formatted = post.replaceAll("\n", "<br>");
-		return post;
+		String formatted = post.replaceAll("\n", "<br>");
+		return formatted;
 	}
 	
 	public Date getDate() {

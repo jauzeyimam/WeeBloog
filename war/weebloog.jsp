@@ -25,10 +25,43 @@
 		User user = userService.getCurrentUser();
 	%>
 	<div class="header">
-	<a href="/"><img src="header.png" /></a>
-	<div class="rightalign"><b>by jauzey imam and zander smith</b></div>
+		<a href="/"><img src="header.png" /></a>
+		<div class="controlpanel">
+			<h2>Control Panel</h2>
+			<%
+				if (user == null) {
+			%>
+			<a href="<%=userService.createLoginURL(request.getRequestURI())%>">Sign
+				in to start posting!</a>
+			</p>
+
+			<%
+				}
+
+				else {
+			%>
+			<p>
+				<a href="/makepost.jsp">Click here to make a post!</a>
+			<p>
+				<a href="<%=userService.createLogoutURL(request.getRequestURI())%>">Sign
+					out</a>
+			</p>
+			<%
+				}
+			%>
+
+			<p>
+				<a href="/subscribe.jsp">Subscribe here!</a>
+			</p>
+			<p>
+				<a href="/unsubscribe.jsp">Unsubscribe here.</a>
+			</p>
+
+
+
+		</div>
 	</div>
-	
+
 	<div class="wrapper">
 
 		<h1>Posts</h1>
@@ -57,11 +90,12 @@
 					BlogPost post = posts.get(i);
 					pageContext.setAttribute("titlePost", post.getTitle());
 					pageContext.setAttribute("contentPost", post.getPost());
-					pageContext.setAttribute("contentDate", post.getDateString());
+					pageContext.setAttribute("contentDate",
+							post.getDateString());
 					pageContext.setAttribute("contentUser", post.getUser());
 		%>
 		<h2>${fn:escapeXml(titlePost)}</h2>
-		<p>${fn:escapeXml(contentPost)}</p>
+		${contentPost}
 		<div class="datetime">
 			${fn:escapeXml(contentUser)} <br> ${fn:escapeXml(contentDate)}
 		</div>
@@ -73,38 +107,15 @@
 				}
 			%>
 		
-		<h1>Control Panel</h1>
-		<%
-			if (user == null) {
-		%>
-		<a href="<%=userService.createLoginURL(request.getRequestURI())%>">Sign
-			in</a> to start posting!
-		</p>
-
-		<%
-			}
-
-			else {
-		%>
-		<p>
-			Click <a href="/makepost.jsp">here</a> to make a post!
-		<p>
-			<a href="<%=userService.createLogoutURL(request.getRequestURI())%>">Sign
-				out</a>.
-		</p>
-		<%
-			}
-		%>
-
-		<p>
-			Subscribe <a href="/subscribe.jsp">here!</a>
-		</p>
-		<p>
-			Unsubscribe <a href="/unsubscribe.jsp">here.</a>
-		</p>
-
-
 	</div>
+	<div class="authors">
+		<b>
+		jauzey imam<br>
+		zander smith<br>
+		nadeem zaki<br>
+		mark judice</b>
+	</div>
+
 
 </body>
 </html>
