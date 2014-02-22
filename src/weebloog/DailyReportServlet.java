@@ -44,14 +44,17 @@ public class DailyReportServlet extends HttpServlet {
 			Collections.sort(posts);
 
 			String str = "Here is your daily post digest!\r\n\n";
+			
+			boolean newPosts = false;
 
 			for (BlogPost post : posts) {
 				if (post.getDate().after(date)) {
 					str += post.getTitle() + "\r\n";
-					str += post.getPost() + "\r\n";
+					str += post.getPostUnformatted() + "\r\n";
 					str += "Posted by " + post.getUser() + " on "
 							+ post.getDateString() + "\r\n";
 					str += "\n";
+					newPosts = true;
 				}
 			}
 			
@@ -59,7 +62,7 @@ public class DailyReportServlet extends HttpServlet {
 
 			// Send out Email
 
-			if (!posts.isEmpty() && !subs.isEmpty()) {
+			if (newPosts && !subs.isEmpty()) {
 				MimeMessage outMessage = new MimeMessage(session);
 				outMessage.setFrom(new InternetAddress(
 						"admin@weebloog.appspotmail.com"));
@@ -70,7 +73,7 @@ public class DailyReportServlet extends HttpServlet {
 				}
 
 				outMessage
-						.setSubject("Daily Posts from The Weblog of Jauzey Imam and Zander Smith");
+						.setSubject("Daily Posts from the PaintChat Weblog");
 				outMessage.setText(str);
 				Transport.send(outMessage);
 			}

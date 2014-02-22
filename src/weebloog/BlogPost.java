@@ -42,6 +42,11 @@ public class BlogPost implements Comparable<BlogPost>{
 		return formatted;
 	}
 	
+	public String getPostUnformatted() {
+		return post;
+	}
+
+	
 	public Date getDate() {
 		return date;
 	}
